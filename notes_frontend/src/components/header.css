@@ -1,0 +1,46 @@
+.nf-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.nf-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nf-brand {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.nf-banner {
+  margin-top: 10px;
+  background: color-mix(in srgb, var(--secondary) 15%, white);
+  border: 1px solid var(--secondary);
+  color: #7c4a03;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}

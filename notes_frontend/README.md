@@ -1,82 +1,38 @@
-# Lightweight React Template for KAVIA
+# Simple Notes (React + Supabase)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern two-pane notes app using the Ocean Professional theme.
 
-## Features
+## Quick start
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+1) Install dependencies
+- npm install
 
-## Getting Started
+2) Set environment variables
+- Copy .env.example to .env
+- Set:
+  - REACT_APP_SUPABASE_URL
+  - REACT_APP_SUPABASE_KEY
 
-In the project directory, you can run:
+3) Run
+- npm start
+- Open http://localhost:3000
 
-### `npm start`
+If the Supabase environment is missing, the app still loads with a banner; notes won't persist.
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Database schema
 
-### `npm test`
+Create a table named notes:
 
-Launches the test runner in interactive watch mode.
+```sql
+create extension if not exists "uuid-ossp";
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+create table if not exists public.notes (
+  id uuid primary key default uuid_generate_v4(),
+  title text,
+  content text,
+  created_at timestamptz,
+  updated_at timestamptz
+);
 ```
 
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Realtime is enabled via the supabase-js channel on public.notes.

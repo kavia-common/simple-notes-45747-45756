@@ -1,0 +1,76 @@
+:root {
+  /* Ocean Professional Theme */
+  --primary: #2563EB;
+  --secondary: #F59E0B;
+  --error: #EF4444;
+
+  --bg: #f3f4f6;         /* backdrop */
+  --surface: #ffffff;     /* cards, panels */
+  --text: #111827;        /* main text */
+  --text-muted: #6b7280;  /* secondary text */
+  --border: #e5e7eb;      /* subtle borders */
+  --bg-soft: #f9fafb;     /* softer backgrounds */
+
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+}
+
+.app-shell {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.two-pane {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: 100%;
+  gap: 0;
+}
+
+.two-pane .left {
+  border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.05), transparent);
+}
+
+.two-pane .right {
+  background: var(--surface);
+}
+
+@media (max-width: 900px) {
+  .two-pane {
+    grid-template-columns: 1fr;
+  }
+  .two-pane .left {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+input, textarea {
+  outline: none;
+}
